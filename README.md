@@ -6,5 +6,5 @@ PROJETO PIBIT: Saúde Móvel
 
 Serviço web responsavel por prover dados e informações para aplicação móvel para projeto de governo Melhor em Casa.
 
-Orientador: Luis Paulo Carvalho
-Orientando: Cleiton Amorim Coqueiro
+#Orientador: Luis Paulo Carvalho
+#Orientando: Cleiton Amorim Coqueiro
