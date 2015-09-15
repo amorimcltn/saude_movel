@@ -1,0 +1,28 @@
+<?php
+require_once(dirname(__FILE__).'/config.php');
+require_once(CLASSES.'Evento.php');
+require_once(FACHADAS.'FachadaEvento.php');
+require_once(SLIM.'Slim.php');
+
+\Slim\Slim::registerAutoloader();
+
+$app = new \Slim\Slim();
+
+$app->get(
+    '/listaeventos',
+    function () {    	
+    	// recepciona eventos nativos do e-vent-br
+    	$nativo = FachadaEvento::getInstancia() -> listarEventos();
+    	// cria array de objetos para json
+    	$eventos = NULL;
+    	foreach ($nativo as $evento) {
+    		$std = new stdclass();
+    		$std->codigo = $evento->getCodEvento();
+    		$std->nome = $evento->getNome();
+        	$eventos[] = $std;
+		}
+		echo json_encode($eventos);
+    }
+);
+
+$app->run();

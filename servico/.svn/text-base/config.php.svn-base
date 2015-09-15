@@ -1,0 +1,12 @@
+<?php
+
+define('MODULO_DIRETORIO', dirname(__FILE__).'/');
+define('APLICATIVO', MODULO_DIRETORIO.'../../e-vent/aplicativo/');
+define('CLASSES', APLICATIVO.'classes/');
+define('FACHADAS', APLICATIVO.'fachada/');
+define('PERSISTENCIAS', APLICATIVO.'persistencia/');
+define('RECURSOS', MODULO_DIRETORIO.'../recursos/');
+define('SLIM', RECURSOS.'Slim/');
+
+?>
+
