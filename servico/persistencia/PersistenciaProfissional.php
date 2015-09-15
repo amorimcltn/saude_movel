@@ -15,7 +15,7 @@ class PersistenciaProfissional extends InstanciaUnica {
 
         if (!is_null($registros)) {
             $i = 0;
-            //Percorre array que retornou do banco de dados e cria um objeto do tipo Usuario
+            //Percorre array que retornou do banco de dados e cria um objeto do tipo Profissional
             foreach ($registros as $registro) {
                 $usuario = new Profissional();
                 $usuario -> setCodProf($registro['cod_prof']);
@@ -38,7 +38,7 @@ class PersistenciaProfissional extends InstanciaUnica {
 
         if (!is_null($registros)) {
             $i = 0;
-            //Percorre array que retornou do banco de dados e cria um objeto do tipo Usuario
+            //Percorre array que retornou do banco de dados e cria um objeto do tipo Profissional
             foreach ($registros as $registro) {
                 $usuario = new Profissional();
                 $usuario -> setCodProf($cod_prof);
