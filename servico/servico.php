@@ -1,7 +1,9 @@
 <?php
 require_once (dirname(__FILE__).'/config.php');
 require_once (FACHADA. 'FachadaProfissional.php');
+require_once (FACHADA. 'FachadaPaciente.php');
 require_once (FACHADA. 'FachadaUtilidades.php');
+require_once (CLASSES. 'Paciente.php');
 require_once (SLIM. 'Slim.php');
 require_once (UTILS. 'Utils.php');
 
@@ -57,7 +59,9 @@ $app->get('/dadosusuario/:token', function ($token) {
 						$std->endereco = $visita->getEndereco();
 						$std->patologias = $visita->getPatologias();
 						$std->anotacoes = $visita->getAnotacoes();
-						
+						$std->latitude = $visita->getLatitude();
+						$std->longitude = $visita->getLongitude();						
+
 						$visitas[] = $std;
 						
 					}
@@ -80,6 +84,20 @@ $app->get('/cadastrousuario/:nome/:cpf/:senha', function ($nome, $cpf, $senha) {
 
 			$id = FachadaProfissional::getInstancia()->adicionarUsuario($usuario);
 			echo "@" .$id. "@";
+	});
+	
+$app->get('/cadastropaciente/:nome/:idade/:endereco/:patologias', function ($nome, $idade, $endereco, $patologias) {
+		$paciente = new Paciente();
+		$paciente->nome = $nome;
+		$paciente->idade = $idade;
+		$paciente->endereco = $endereco;
+		$paciente->patologias = $patologias;
+		$cordenadas = pegaCoordenadas($endereco);
+		$paciente->latitude = $cordenadas[0];
+		$paciente->longitude = $cordenadas[1];
+	
+		$id = FachadaPaciente::getInstancia()->adicionarPaciente($paciente);
+		echo "@" .$id. "@";
 	});
 
 $app->run();

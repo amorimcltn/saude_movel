@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `nome` varchar(30) DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
   `endereco` text,
-  `patologias` text,
+ `longitude` varchar(100),
+`latitude` varchar(100), `patologias` text,
   PRIMARY KEY (`cod_paciente`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 

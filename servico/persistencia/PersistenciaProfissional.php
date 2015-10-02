@@ -53,7 +53,7 @@ class PersistenciaProfissional extends InstanciaUnica {
 
     public function selecionarVisitasPorUsuario($cod_prof){
     	$visitas = NULL;
-    	$sql = "SELECT DISTINCT pa.nome, pa.idade, pa.endereco, pa.patologias, v.* from paciente pa, 
+    	$sql = "SELECT DISTINCT pa.nome, pa.idade, pa.endereco, pa.latitude, pa.longitude, pa.patologias, v.* from paciente pa, 
     			profissional pro JOIN visita v ON v.cod_prof = pro.cod_prof where v.cod_paciente = pa.cod_paciente and v.cod_prof = 1";
     	
     	$registros = FachadaConectorBD::getInstancia() -> consultar($sql);
@@ -67,6 +67,8 @@ class PersistenciaProfissional extends InstanciaUnica {
     			$visita -> setIdade($registro['idade']);
     			$visita -> setPatologias(utf8_encode($registro['patologias']));
     			$visita -> setEndereco(utf8_encode($registro['endereco']));
+    			$visita -> setLatitude($registro['latitude']);
+    			$visita -> setLongitude($registro['longitude']);
     			$visita -> setDataHora($registro['data_hora']);
     			$visita -> setAnotacoes(utf8_encode($registro['anotacoes']));
     			
@@ -78,7 +80,7 @@ class PersistenciaProfissional extends InstanciaUnica {
     	return $visitas;
     }
     
-    public function adicionarUsuario(Profissional $usuario) {        
+    public function adicionarUsuario($usuario) {        
         $nome = $usuario -> getNome();
         $senha = $usuario -> getSenha();
         $cpf = $usuario -> getCpf();

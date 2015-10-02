@@ -6,6 +6,8 @@ class Paciente {
 	public $nome;
 	public $idade;
 	public $endereco;
+	public $latitude;
+	public $longitude;
 	public $patologias;
 	
 	public function setCodPaciente($cod_paciente){
@@ -36,8 +38,24 @@ class Paciente {
 		$this->endereco = $endereco;
 	}
 	
-	public function getEnderedo(){
+	public function getEndereco(){
 		return $this->endereco;
+	}	
+	
+	public function setLongitude($longitude){
+		$this->longitude = $longitude;
+	}
+	
+	public function getLongitude(){
+		return $this->longitude;
+	}
+	
+	public function setLatitude($latitude){
+		$this->latitude = $latitude;
+	}
+	
+	public function getLatitude(){
+		return $this->latitude;
 	}	
 	
 	public function setPatologias($patologias){

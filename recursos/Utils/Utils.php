@@ -52,4 +52,26 @@ function diffDate($d2, $type='', $sep='-')
 	return $token_valido;
 }
 
+function pegaCoordenadas($endereco){
+	$ch = curl_init();
+	$params = http_build_query(array("address"=>$endereco));
+	curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/geocode/json?".$params);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+	
+	$response = curl_exec($ch);
+	curl_close($ch);	
+	
+	$obj = json_decode($response);
+	
+	$latitude = $obj->results[0]->geometry->location->lat;
+    $longitude = $obj->results[0]->geometry->location->lng;
+	$cordenadas[] = $latitude;
+	$cordenadas[] = $longitude;
+	return $cordenadas;
+}
+
 ?>

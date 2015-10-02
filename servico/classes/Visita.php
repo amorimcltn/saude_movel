@@ -7,6 +7,8 @@ class Visita {
 	public $nome;
 	public $idade;
 	public $endereco;
+	public $longitude;
+	public $latitude;
 	public $patologias;
 	public $data_hora;
 	public $anotacoes;
@@ -49,6 +51,22 @@ class Visita {
 	
 	public function getEndereco(){
 		return $this->endereco;
+	}	
+	
+	public function setLongitude($longitude){
+		$this->longitude = $longitude;
+	}
+	
+	public function getLongitude(){
+		return $this->longitude;
+	}	
+	
+	public function setLatitude($latitude){
+		$this->latitude = $latitude;
+	}
+	
+	public function getLatitude(){
+		return $this->latitude;
 	}	
 	
 	public function setPatologias($patologias){
