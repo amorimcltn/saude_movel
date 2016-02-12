@@ -53,24 +53,35 @@ class PersistenciaProfissional extends InstanciaUnica {
 
     public function selecionarVisitasPorUsuario($cod_prof){
     	$visitas = NULL;
-    	$sql = "SELECT DISTINCT pa.nome, pa.idade, pa.endereco, pa.latitude, pa.longitude, pa.patologias, v.* from paciente pa, 
-    			profissional pro JOIN visita v ON v.cod_prof = pro.cod_prof where v.cod_paciente = pa.cod_paciente and v.cod_prof = 1";
+    	$sql = "SELECT DISTINCT pa.nome, pa.nascimento, pa.sexo, pa.rua, pa.numero, pa.bairro, pa.cidade, pa.estado, pa.cep, pa.latitude, pa.longitude, 
+    			pa.patologias, pa.prioridade, v.* from paciente pa, profissional pro 
+    			JOIN visita v ON v.cod_prof = pro.cod_prof where v.cod_paciente = pa.cod_paciente and v.cod_prof = ".$cod_prof." and v.status <> 1 ORDER BY pa.nascimento";
     	
     	$registros = FachadaConectorBD::getInstancia() -> consultar($sql);
     	if (!is_null($registros)){
     		$i = 0;
     		foreach ($registros as $registro) {
     			$visita = new Visita();
+    			$visita -> setCodVisita($registro['cod_visita']);
     			$visita -> setCodProf($registro['cod_prof']);
     			$visita -> setCodPaciente($registro['cod_paciente']);
     			$visita -> setNome(utf8_encode($registro['nome']));
-    			$visita -> setIdade($registro['idade']);
+    			$visita -> setNascimento($registro['nascimento']);
+    			$visita -> setSexo($registro['sexo']);
     			$visita -> setPatologias(utf8_encode($registro['patologias']));
-    			$visita -> setEndereco(utf8_encode($registro['endereco']));
+    			$visita -> setRua(utf8_encode($registro['rua']));
+    			$visita -> setNumero($registro['numero']);
+    			$visita -> setBairro(utf8_encode($registro['bairro']));
+    			$visita -> setCidade(utf8_encode($registro['cidade']));
+    			$visita -> setEstado(utf8_encode($registro['estado']));
+    			$visita -> setCep($registro['cep']);
     			$visita -> setLatitude($registro['latitude']);
     			$visita -> setLongitude($registro['longitude']);
     			$visita -> setDataHora($registro['data_hora']);
+    			$visita -> setDataVisita($registro['data_visita']);
+    			$visita -> setStatus($registro['status']);
     			$visita -> setAnotacoes(utf8_encode($registro['anotacoes']));
+    			$visita -> setPrioridade($registro['prioridade']);
     			
     			$visitas[$i++] = $visita;
     		}
@@ -89,6 +100,20 @@ class PersistenciaProfissional extends InstanciaUnica {
 		
         return FachadaConectorBD::getInstancia()->inserir($sql);
     }	
+    
+    public function updateVisitaPaciente($visita) {
+    	$cod_paciente = $visita -> getCodPaciente();
+    	$patologias = $visita -> getPatologias();
+    	$anotacoes = $visita -> getAnotacoes();
+    	$data_hora = $visita -> getDataHora();
+    	$prioridade = $visita -> getPrioridade();
+    	
+    	$sql = "UPDATE visita SET anotacoes = '".$anotacoes."', data_hora = '".$data_hora."', status = '1' where cod_paciente = '".$cod_paciente."'";
+    	$res = FachadaConectorBD::getInstancia()->atualizar($sql);
+    	$sql = "UPDATE paciente SET patologias = '".$patologias."', prioridade = '".$prioridade."' where cod_paciente = '".$cod_paciente."'";
+    	$res = FachadaConectorBD::getInstancia()->atualizar($sql);
+    	return $res;
+    }    
 
 }
 ?>

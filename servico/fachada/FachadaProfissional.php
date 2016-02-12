@@ -35,6 +35,10 @@ class FachadaProfissional extends InstanciaUnica{
 			return NULL;
 		}
 	}
+	
+	public function atualizaVisitaPaciente($visita){
+		return PersistenciaProfissional::getInstancia()->updateVisitaPaciente($visita);
+	}
 
 }
 

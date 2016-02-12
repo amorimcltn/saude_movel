@@ -13,10 +13,15 @@ define('PERSISTENCIA', SERVICO.'persistencia/');
 define('TEMPO_SESSAO', 315);
 
 //Configuracoes do banco de dados
+//define('ACESSO_SERVIDOR_SERVICO','localhost');
+//define('ACESSO_USUARIO_SERVICO','root');
+//define('ACESSO_SENHA_SERVICO','');
+//define('ACESSO_NOME_BANCO_SERVICO','saude_movel_servico');
+
 define('ACESSO_SERVIDOR_SERVICO','localhost');
-define('ACESSO_USUARIO_SERVICO','root');
-define('ACESSO_SENHA_SERVICO','');
-define('ACESSO_NOME_BANCO_SERVICO','saude_movel_servico');
+define('ACESSO_USUARIO_SERVICO','1031257');
+define('ACESSO_SENHA_SERVICO','saudemovel0587');
+define('ACESSO_NOME_BANCO_SERVICO','1031257');
 
 ?>
 

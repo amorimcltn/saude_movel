@@ -2,16 +2,34 @@
 
 class Visita {
 	
+	public $cod_visita;
 	public $cod_prof;
 	public $cod_paciente;	
 	public $nome;
-	public $idade;
-	public $endereco;
+	public $nascimento;
+	public $sexo;
+	public $rua;
+	public $numero;
+	public $bairro;
+	public $cidade;
+	public $estado;	
+	public $cep;
 	public $longitude;
 	public $latitude;
 	public $patologias;
 	public $data_hora;
+	public $data_visita;
+	public $status;
 	public $anotacoes;
+	public $prioridade;
+
+	public function setCodVisita($cod_visita){
+		$this->cod_visita = $cod_visita;
+	}
+	
+	public function getCodVisita(){
+		return $this->cod_visita;
+	}	
 	
 	public function setCodProf($cod_prof){
 		$this->cod_prof = $cod_prof;
@@ -37,20 +55,68 @@ class Visita {
 		return $this->nome;
 	}	
 
-	public function setIdade($idade){
-		$this->idade = $idade;
+	public function setNascimento($nascimento){
+		$this->nascimento = $nascimento;
 	}
 	
-	public function getIdade(){
-		return $this->idade;
+	public function getNascimento(){
+		return $this->nascimento;
 	}	
 	
-	public function setEndereco($endereco){
-		$this->endereco = $endereco;
+	public function setSexo($sexo){
+		$this->sexo = $sexo;
 	}
 	
-	public function getEndereco(){
-		return $this->endereco;
+	public function getSexo(){
+		return $this->sexo;
+	}	
+	
+	public function setRua($rua){
+		$this->rua = $rua;
+	}
+	
+	public function getRua(){
+		return $this->rua;
+	}
+	
+	public function setNumero($numero){
+		$this->numero = $numero;
+	}
+	
+	public function getNumero(){
+		return $this->numero;
+	}	
+	
+	public function setBairro($bairro){
+		$this->bairro = $bairro;
+	}
+	
+	public function getBairro(){
+		return $this->bairro;
+	}	
+	
+	public function setCidade($cidade){
+		$this->cidade = $cidade;
+	}
+	
+	public function getCidade(){
+		return $this->cidade;
+	}	
+	
+	public function setEstado($estado){
+		$this->estado = $estado;
+	}
+	
+	public function getEstado(){
+		return $this->estado;
+	}
+	
+	public function setCep($cep){
+		$this->cep = $cep;
+	}
+	
+	public function getCep(){
+		return $this->cep;
 	}	
 	
 	public function setLongitude($longitude){
@@ -85,12 +151,36 @@ class Visita {
 		return $this->data_hora;
 	}	
 	
+	public function setDataVisita($data_visita){
+		$this->data_visita = $data_visita;
+	}
+	
+	public function getDataVisita(){
+		return $this->data_visita;
+	}	
+	
 	public function setAnotacoes($anotacoes){
 		$this->anotacoes = $anotacoes;
 	}
 	
 	public function getAnotacoes(){
 		return $this->anotacoes;
+	}	
+	
+	public function setStatus($status){
+		$this->status = $status;
+	}
+	
+	public function getStatus(){
+		return $this->status;
+	}
+	
+	public function setPrioridade($prioridade){
+		$this->prioridade = $prioridade;
+	}
+	
+	public function getPrioridade(){
+		return $this->prioridade;
 	}	
 	
 }
