@@ -107,10 +107,10 @@ class PersistenciaProfissional extends InstanciaUnica {
     	$anotacoes = $visita -> getAnotacoes();
     	$data_hora = $visita -> getDataHora();
     	$prioridade = $visita -> getPrioridade();
-    	
-    	$sql = "UPDATE visita SET anotacoes = '".$anotacoes."', data_hora = '".$data_hora."', status = '1' where cod_paciente = '".$cod_paciente."'";
+
+    	$sql = "UPDATE paciente SET patologias = '".$patologias."', prioridade = '".$prioridade."' where cod_paciente = '".$cod_paciente."'";    	
     	$res = FachadaConectorBD::getInstancia()->atualizar($sql);
-    	$sql = "UPDATE paciente SET patologias = '".$patologias."', prioridade = '".$prioridade."' where cod_paciente = '".$cod_paciente."'";
+    	$sql = "UPDATE visita SET anotacoes = '".$anotacoes."', data_hora = '".$data_hora."', status = '1' where cod_paciente = '".$cod_paciente."'";
     	$res = FachadaConectorBD::getInstancia()->atualizar($sql);
     	return $res;
     }    
